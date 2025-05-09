@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+</head>
+<body>
+    <p>Choose your action:</p>
+    <button id="rock" class="action_button">Rock</button>
+    <button id="paper" class="action_button">Paper</button>
+    <button id="scissor" class="action_button">Scissor</button>
+
+    <div id="com_action"></div>
+
+    <script>
+        my_choice = null;
+
+        const possibleActions = ["Rock", "Paper", "Scissor"];
+
+        const actionButtons = document.querySelectorAll(".action_button");
+        const comActionDisplay = document.getElementById("com_action");
+
+        actionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button_value = button.innerHTML;
+                console.log(`Chosen action: ${button_value}`);
+                
+                action_index = Math.floor(Math.random() * 3);
+                comActionDisplay.innerHTML = `Computer action: ${possibleActions[action_index]}`;
+                console.log(`Computer action: ${possibleActions[action_index]}`);
+            });
+        });
+    </script>
+</body>
+</html>
