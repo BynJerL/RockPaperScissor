@@ -12,23 +12,40 @@
     <button id="scissor" class="action_button">Scissor</button>
 
     <div id="com_action"></div>
+    <div id="turn_result"></div>
 
     <script>
         my_choice = null;
 
         const possibleActions = ["Rock", "Paper", "Scissor"];
+        const actionRelation = {
+            "Rock" : "Scissor",
+            "Paper" : "Rock",
+            "Scissor" : "Paper"
+        };
 
         const actionButtons = document.querySelectorAll(".action_button");
         const comActionDisplay = document.getElementById("com_action");
+        const resultDisplay = document.getElementById("turn_result");
 
         actionButtons.forEach(button => {
             button.addEventListener('click', () => {
-                button_value = button.innerHTML;
-                console.log(`Chosen action: ${button_value}`);
+                player_action = button.innerHTML;
+                console.log(`Chosen action: ${player_action}`);
                 
                 action_index = Math.floor(Math.random() * 3);
-                comActionDisplay.innerHTML = `Computer action: ${possibleActions[action_index]}`;
-                console.log(`Computer action: ${possibleActions[action_index]}`);
+                computer_action = possibleActions[action_index];
+
+                comActionDisplay.innerHTML = `Computer action: ${computer_action}`;
+                console.log(`Computer action: ${computer_action}`);
+
+                if (player_action === computer_action) {
+                    resultDisplay.innerHTML = "Tie!";
+                } else if (actionRelation[player_action] === computer_action) {
+                    resultDisplay.innerHTML = "You Win!";
+                } else {
+                    resultDisplay.innerHTML = "You Lose!";
+                }
             });
         });
     </script>
