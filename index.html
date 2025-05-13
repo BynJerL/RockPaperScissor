@@ -8,13 +8,15 @@
 <body>
     <div>You : <span id="player_score">0</span></div>
     <div>Computer : <span id="com_score">0</span></div>
+
+    <div id="player_action"></div>
+    <div id="com_action"></div>
+    <div id="turn_result"></div>
+
     <p>Choose your action:</p>
     <button id="rock" class="action_button">Rock</button>
     <button id="paper" class="action_button">Paper</button>
     <button id="scissor" class="action_button">Scissor</button>
-
-    <div id="com_action"></div>
-    <div id="turn_result"></div>
 
     <script>
         var my_choice = null;
@@ -27,20 +29,35 @@
         };
 
         const actionButtons = document.querySelectorAll(".action_button");
+        const playerActionDisplay = document.getElementById("player_action");
         const comActionDisplay = document.getElementById("com_action");
         const resultDisplay = document.getElementById("turn_result");
         const playerScoreDisplay = document.getElementById("player_score");
         const comScoreDisplay = document.getElementById("com_score");
 
+        function action_to_emoji (action) {
+            switch (action) {
+                case "Rock":
+                    return "✊";
+                case "Paper":
+                    return "✋";
+                case "Scissor":
+                    return "✌️";
+                default:
+                    return "❌"
+            }
+        }
+
         actionButtons.forEach(button => {
             button.addEventListener('click', () => {
                 player_action = button.innerHTML;
+                playerActionDisplay.innerHTML = `Your action ${action_to_emoji(player_action)}`;
                 console.log(`Chosen action: ${player_action}`);
                 
                 action_index = Math.floor(Math.random() * 3);
                 computer_action = possibleActions[action_index];
 
-                comActionDisplay.innerHTML = `Computer action: ${computer_action}`;
+                comActionDisplay.innerHTML = `Computer action: ${action_to_emoji(computer_action)}`;
                 console.log(`Computer action: ${computer_action}`);
 
                 if (player_action === computer_action) {
