@@ -4,13 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        section#score_section {
+            line-height: 0;
+        }
+
+        div.score_display  {
+            display: inline-block;
+            width: 75px;
+            height: 50px;
+        }
+
+        div.score_display h3 {
+            line-height: 0;
+        }
+
+        div.action_display {
+            display: inline-block;
+            background-color: aqua;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        div.action_display div {
+            width: 100px;
+            height: 50px;
+            font-size: 40px;
+        }
+
+        div#turn_result {
+            width: 230px;
+            text-align: center;
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
-    <div>You : <span id="player_score">0</span></div>
-    <div>Computer : <span id="com_score">0</span></div>
+    <section id="score_section">
+        <h3>Score</h3>
 
-    <div id="player_action"></div>
-    <div id="com_action"></div>
+        <div class="score_display">
+            <h3>You</h3>
+            <div id="player_score">0</div>
+        </div>
+        <div class="score_display">
+            <h3>Computer</h3>
+            <div id="com_score">0</div>
+        </div>
+    </section>
+    
+    <div class="action_display">
+        <div id="player_action"></div>
+        <h3>You</h3>
+    </div>
+    <div class="action_display">
+        <div id="com_action"></div>
+        <h3>Computer</h3>
+    </div>
+    
     <div id="turn_result"></div>
 
     <p>Choose your action:</p>
@@ -51,13 +111,13 @@
         actionButtons.forEach(button => {
             button.addEventListener('click', () => {
                 player_action = button.innerHTML;
-                playerActionDisplay.innerHTML = `Your action ${action_to_emoji(player_action)}`;
+                playerActionDisplay.innerHTML = action_to_emoji(player_action);
                 console.log(`Chosen action: ${player_action}`);
                 
                 action_index = Math.floor(Math.random() * 3);
                 computer_action = possibleActions[action_index];
 
-                comActionDisplay.innerHTML = `Computer action: ${action_to_emoji(computer_action)}`;
+                comActionDisplay.innerHTML = action_to_emoji(computer_action);
                 console.log(`Computer action: ${computer_action}`);
 
                 if (player_action === computer_action) {
