@@ -6,6 +6,8 @@
     <title>Rock Paper Scissor</title>
 </head>
 <body>
+    <div>You : <span id="player_score">0</span></div>
+    <div>Computer : <span id="com_score">0</span></div>
     <p>Choose your action:</p>
     <button id="rock" class="action_button">Rock</button>
     <button id="paper" class="action_button">Paper</button>
@@ -15,7 +17,7 @@
     <div id="turn_result"></div>
 
     <script>
-        my_choice = null;
+        var my_choice = null;
 
         const possibleActions = ["Rock", "Paper", "Scissor"];
         const actionRelation = {
@@ -27,6 +29,8 @@
         const actionButtons = document.querySelectorAll(".action_button");
         const comActionDisplay = document.getElementById("com_action");
         const resultDisplay = document.getElementById("turn_result");
+        const playerScoreDisplay = document.getElementById("player_score");
+        const comScoreDisplay = document.getElementById("com_score");
 
         actionButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -43,8 +47,12 @@
                     resultDisplay.innerHTML = "Tie!";
                 } else if (actionRelation[player_action] === computer_action) {
                     resultDisplay.innerHTML = "You Win!";
+                    let player_score = parseInt(playerScoreDisplay.innerHTML);
+                    playerScoreDisplay.innerHTML = ++player_score;
                 } else {
                     resultDisplay.innerHTML = "You Lose!";
+                    let com_score = parseInt(comScoreDisplay.innerHTML);
+                    comScoreDisplay.innerHTML = ++com_score;
                 }
             });
         });
