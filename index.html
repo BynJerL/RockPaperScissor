@@ -14,6 +14,8 @@
                 <option value="infinite">Infinite</option>
                 <option value="first_to_3">First to 3</option>
                 <option value="first_to_5">First to 5</option>
+                <option value="zero_sum_3">Zero Sum 3</option>
+                <option value="zero_sum_5">Zero Sum 5</option>
             </select>
             <button type="submit">Apply</button>
         </form>
@@ -59,6 +61,7 @@
     <script>
         var my_choice = null;
         var current_mode = "infinite";
+        var current_attempt = 0;
 
         const possibleActions = ["Rock", "Paper", "Scissor"];
         const actionRelation = {
@@ -109,15 +112,16 @@
 
         actionButtons.forEach(button => {
             button.addEventListener('click', () => {
+                current_attempt++;
                 player_action = button.innerHTML;
                 playerActionDisplay.innerHTML = action_to_emoji(player_action);
-                console.log(`Chosen action: ${player_action}`);
+                // console.log(`Chosen action: ${player_action}`);
                 
                 action_index = Math.floor(Math.random() * 3);
                 computer_action = possibleActions[action_index];
 
                 comActionDisplay.innerHTML = action_to_emoji(computer_action);
-                console.log(`Computer action: ${computer_action}`);
+                // console.log(`Computer action: ${computer_action}`);
                 let player_score = parseInt(playerScoreDisplay.innerHTML);
                 let com_score = parseInt(comScoreDisplay.innerHTML);
 
@@ -126,9 +130,19 @@
                 } else if (actionRelation[player_action] === computer_action) {
                     resultDisplay.innerHTML = "You Win!";
                     playerScoreDisplay.innerHTML = ++player_score;
+                    if (current_mode === "zero_sum_3" ||
+                        current_mode === "zero_sum_5"
+                    ) {
+                        comScoreDisplay.innerHTML = --com_score;
+                    }
                 } else {
                     resultDisplay.innerHTML = "You Lose!";
                     comScoreDisplay.innerHTML = ++com_score;
+                    if (current_mode === "zero_sum_3" ||
+                        current_mode === "zero_sum_5"
+                    ) {
+                        playerScoreDisplay.innerHTML = --player_score;
+                    }
                 }
 
                 switch (current_mode) {
@@ -150,6 +164,26 @@
                             alert("You win");
                             reset_game();
                         } else if (com_score >= 5) {
+                            alert("You lose");
+                            reset_game();
+                        }
+                        break;
+                    
+                    case "zero_sum_3":
+                        if (com_score <= -3) {
+                            alert("You win");
+                            reset_game();
+                        } else if (player_score <= -3) {
+                            alert("You lose");
+                            reset_game();
+                        }
+                        break;
+                    
+                    case "zero_sum_5":
+                        if (com_score <= -5) {
+                            alert("You win");
+                            reset_game();
+                        } else if (player_score <= -5) {
                             alert("You lose");
                             reset_game();
                         }
