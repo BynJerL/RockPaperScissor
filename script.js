@@ -37,6 +37,8 @@ function action_to_emoji (action) {
 function reset_game() {
     playerScoreDisplay.innerHTML = 0;
     comScoreDisplay.innerHTML = 0;
+    current_attempt = 0;
+    attemptDisplay.innerHTML = current_attempt;
 }
 
 function apply_mode() {
