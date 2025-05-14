@@ -4,79 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        section#score_section {
-            line-height: 0;
-        }
-
-        div.score_display  {
-            display: inline-block;
-            width: 75px;
-            height: 50px;
-        }
-
-        div.score_display h3 {
-            line-height: 0;
-        }
-
-        div.action_display {
-            display: inline-block;
-            background-color: aqua;
-            text-align: center;
-            width: 100px;
-            height: 100px;
-            padding: 5px;
-            border: 2px solid black;
-            border-radius: 10px;
-        }
-
-        div.action_display div {
-            width: 100px;
-            height: 50px;
-            font-size: 40px;
-        }
-
-        div#turn_result {
-            width: 230px;
-            text-align: center;
-            height: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section id="score_section">
-        <h3>Score</h3>
-
-        <div class="score_display">
-            <h3>You</h3>
-            <div id="player_score">0</div>
+        <h3 class="score_heading">Score</h3>
+        <div class="score_container">
+            <div class="score_display">
+                <h3>You</h3>
+                <div id="player_score">0</div>
+            </div>
+            <div class="score_display">
+                <h3>Computer</h3>
+                <div id="com_score">0</div>
+            </div> 
         </div>
-        <div class="score_display">
-            <h3>Computer</h3>
-            <div id="com_score">0</div>
-        </div>
+        
     </section>
     
-    <div class="action_display">
-        <div id="player_action"></div>
-        <h3>You</h3>
-    </div>
-    <div class="action_display">
-        <div id="com_action"></div>
-        <h3>Computer</h3>
-    </div>
-    
-    <div id="turn_result"></div>
+    <section id="action_display_section">
+        <div class="action_container">
+            <div class="action_display">
+                <div id="player_action"></div>
+                <h3>You</h3>
+            </div>
+            <div class="action_display">
+                <div id="com_action"></div>
+                <h3>Computer</h3>
+            </div> 
+        </div>
+        <div id="turn_result"></div>
+    </section>
 
-    <p>Choose your action:</p>
-    <button id="rock" class="action_button">Rock</button>
-    <button id="paper" class="action_button">Paper</button>
-    <button id="scissor" class="action_button">Scissor</button>
+    <section>
+        <p>Choose your action:</p>
+        <button id="rock" class="action_button">Rock</button>
+        <button id="paper" class="action_button">Paper</button>
+        <button id="scissor" class="action_button">Scissor</button>
+    </section>
 
     <script>
         var my_choice = null;

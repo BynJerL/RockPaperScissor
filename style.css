@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: grid;
+    align-content: center;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+#score_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#score_section h3.score_heading {
+    line-height: 0;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.score_container {
+    display: flex;
+    justify-content: center;
+    /* gap: 20px; */
+}
+
+div.score_display  {
+    display: inline-block;
+    width: 75px;
+    height: 50px;
+}
+
+div.score_display h3 {
+    line-height: 0;
+}
+
+#action_display_container {
+    display: flex;
+}
+
+div.action_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+div.action_display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+div.action_display div {
+    width: 100px;
+    height: 50px;
+    font-size: 40px;
+}
+
+div.action_display h3 {
+    line-height: 0;
+    font-size: 16px;
+    margin: 20px;
+}
+
+div#turn_result {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 18px;
+    width: 100%;
+    /* text-align: center; */
+    height: 20px;
+}
