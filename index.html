@@ -12,10 +12,12 @@
             <label for="mode">Choose your mode</label>
             <select name="mode" id="mode">
                 <option value="infinite">Infinite</option>
+                <option value="first_to_3">First to 3</option>
                 <option value="first_to_5">First to 5</option>
             </select>
             <button type="submit">Apply</button>
         </form>
+        <div>Current mode: <span id="mode_display"></span></div>
     </section>
 
     <section id="score_section">
@@ -72,6 +74,7 @@
         const playerScoreDisplay = document.getElementById("player_score");
         const comScoreDisplay = document.getElementById("com_score");
         const modeForm = document.getElementById("mode_form");
+        const modeDisplay = document.getElementById("mode_display");
 
         function action_to_emoji (action) {
             switch (action) {
@@ -94,6 +97,7 @@
         function apply_mode() {
             const modeDropDown = document.getElementById("mode");
             current_mode = modeDropDown.value;
+            modeDisplay.innerHTML = current_mode;
         }
 
         modeForm.addEventListener("submit", (event) => {
@@ -127,17 +131,37 @@
                     comScoreDisplay.innerHTML = ++com_score;
                 }
 
-                if (current_mode === "first_to_5") {
-                    if (player_score >= 5) {
-                        alert("You win");
-                        reset_game();
-                    } else if (com_score >= 5) {
-                        alert("You lose");
-                        reset_game();
-                    }
+                switch (current_mode) {
+                    case "infinite":
+                        break;
+                    
+                    case "first_to_3":
+                        if (player_score >= 3) {
+                            alert("You win");
+                            reset_game();
+                        } else if (com_score >= 3) {
+                            alert("You lose");
+                            reset_game();
+                        }
+                        break;
+                    
+                    case "first_to_5":
+                        if (player_score >= 5) {
+                            alert("You win");
+                            reset_game();
+                        } else if (com_score >= 5) {
+                            alert("You lose");
+                            reset_game();
+                        }
+                        break;
+
+                    default:
+                        break
                 }
             });
         });
+
+        apply_mode();
     </script>
 </body>
 </html>
